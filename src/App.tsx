@@ -1,7 +1,15 @@
+import { Card, Text } from "@chakra-ui/react";
+import { BrowserRouter as Router, Route, Routes } from "react-router-dom";
+import MyCard from './components/MyCard';
+
 function App() {
   return (
     <>
-      <h1>Hello World</h1>
+      <Router>
+        <Routes>
+          <Route path="/cards/:user_id" element={<MyCard />} />
+        </Routes>
+      </Router>
     </>
   );
 }
