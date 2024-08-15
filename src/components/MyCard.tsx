@@ -25,8 +25,10 @@ function MyCard() {
       setUser(userData);
 
       const skillId = await getSkillId(id);
+      console.log(skillId);
       if (skillId !== null) {
-        const skillData = await getSkillData(Number(skillId));
+        const skillData = await getSkillData(skillId[0].skill_id);
+        console.log(skillData);
         setSkill(skillData);
       }
 

@@ -1,4 +1,4 @@
-import { Card, Text } from "@chakra-ui/react";
+// import { Card, Text } from "@chakra-ui/react";
 import { BrowserRouter as Router, Route, Routes } from "react-router-dom";
 import MyCard from './components/MyCard';
 
