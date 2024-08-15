@@ -42,11 +42,11 @@ function MyCard() {
   return (
     <div>
       <h1>{user.name}</h1>
-      <h2>{user.description}</h2>
-      <h3>{user.github_id}</h3>
-      <h3>{user.qiita_id}</h3>
-      <h3>{user.x_id}</h3>
-      <h3>{skill ? skill.name : "スキルが見つかりませんでした。"}</h3>
+      <h1>{user.description}</h1>
+      <h1>{skill ? skill.name : "スキルが見つかりませんでした。"}</h1>
+      <h1>{user.github_id}</h1>
+      <h1>{user.qiita_id}</h1>
+      <h1>{user.x_id}</h1>
     </div>
   );
 }
