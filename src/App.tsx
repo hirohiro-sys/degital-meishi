@@ -7,7 +7,7 @@ function App() {
     <>
       <Router>
         <Routes>
-          <Route path="/cards/:user_id" element={<MyCard />} />
+          <Route path="/cards/:id" element={<MyCard />} />
         </Routes>
       </Router>
     </>
