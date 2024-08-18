@@ -22,37 +22,37 @@ describe("トップページのテスト", () => {
 
   test("名前が表示されていること", async () => {
     await waitFor(() => {
-      expect(screen.getByTestId("user-name")).toBeInTheDocument();
+      expect(screen.findByTestId("user-name")).toBeInTheDocument();
     });
   });
 
   test("自己紹介が表示されていること", async () => {
     await waitFor(() => {
-      expect(screen.getByTestId("user-description")).toBeInTheDocument();
+      expect(screen.findByTestId("user-description")).toBeInTheDocument();
     });
   });
 
   test("スキルが表示されていること", async () => {
     await waitFor(() => {
-      expect(screen.getByTestId("user-skill")).toBeInTheDocument();
+      expect(screen.findByTestId("user-skill")).toBeInTheDocument();
     });
   });
 
   test("githubのアイコンが表示されていること", async () => {
     await waitFor(() => {
-      expect(screen.getByTestId("github-icon")).toBeInTheDocument();
+      expect(screen.findByTestId("github-icon")).toBeInTheDocument();
     });
   });
 
   test("qiitaのアイコンが表示されていること", async () => {
     await waitFor(() => {
-      expect(screen.getByTestId("qiita-icon")).toBeInTheDocument();
+      expect(screen.findByTestId("qiita-icon")).toBeInTheDocument();
     });
   });
 
   test("xのアイコンが表示されていること", async () => {
     await waitFor(() => {
-      expect(screen.getByTestId("x-icon")).toBeInTheDocument();
+      expect(screen.findByTestId("x-icon")).toBeInTheDocument();
     });
   });
 
