@@ -1,6 +1,7 @@
-import { render, screen, waitFor, } from "@testing-library/react";
+import { render, screen } from "@testing-library/react";
 import { MemoryRouter, Route, Routes } from "react-router-dom";
 import MyCard from "../components/MyCard";
+import { getSkillData, getSkillId, getUserData } from "../lib/supabasefunctions";
 // import userEvent from "@testing-library/user-event";
 
 const mockedNavigator = jest.fn();
@@ -9,8 +10,37 @@ jest.mock("react-router-dom", () => ({
   useNavigate: () => mockedNavigator,
 }));
 
+// モックデータの作成
+const mockUser = {
+  id: "123",
+  name: "テストユーザー",
+  description: "テストユーザーの自己紹介",
+  github_id: "test-github",
+  qiita_id: "test-qiita",
+  x_id: "test-x"
+};
+
+const mockSkill = {
+  skill_id: "1",
+  name: "テストスキル"
+};
+
+// モック関数の設定
+jest.mock("../lib/supabasefunctions", () => ({
+  getUserData: jest.fn(),
+  getSkillId: jest.fn(),
+  getSkillData: jest.fn()
+}));
+
 describe("トップページのテスト", () => {
   beforeEach(() => {
+    (getUserData as jest.Mock).mockResolvedValue(mockUser);
+    (getSkillId as jest.Mock).mockResolvedValue([{ skill_id: "1" }]);
+    (getSkillData as jest.Mock).mockResolvedValue(mockSkill);
+  });
+  
+  // cardが表示されていること
+  test("cardが表示されていること", async () => {
     render(
       <MemoryRouter initialEntries={['/cards/sample-id']}>
         <Routes>
@@ -18,15 +48,6 @@ describe("トップページのテスト", () => {
         </Routes>
       </MemoryRouter>
     );
-  });
-
-  // cardが表示されていること
-  test("cardが表示されていること", async () => {
-    // `loading...` メッセージが消えるのを待つ
-    await waitFor(() => {
-      expect(screen.queryByText("loading...")).not.toBeInTheDocument();
-    });
-
     // `card` が表示されていることを確認
     const card = await screen.findByTestId("card");
     expect(card).toBeInTheDocument();
