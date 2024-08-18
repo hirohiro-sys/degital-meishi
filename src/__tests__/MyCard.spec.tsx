@@ -1,4 +1,4 @@
-import { render, screen, waitFor } from "@testing-library/react";
+import { render, screen } from "@testing-library/react";
 import { MemoryRouter, Route, Routes } from "react-router-dom";
 import MyCard from "../components/MyCard";
 import userEvent from "@testing-library/user-event";
@@ -21,29 +21,38 @@ describe("トップページのテスト", () => {
   });
 
   test("名前が表示されていること", async () => {
-    await waitFor(()=>expect(screen.getByTestId("user-name")).toBeInTheDocument());
+    const userName = await screen.findByTestId("user-name");
+    expect(userName).toBeInTheDocument();
   });
 
   test("自己紹介が表示されていること", async () => {
-    await waitFor(()=>expect(screen.getByTestId("user-description")).toBeInTheDocument());
-  })
+    const userDescription = await screen.findByTestId("user-description");
+    expect(userDescription).toBeInTheDocument();
+  });
 
   test("スキルが表示されていること", async () => {
-    await waitFor(()=>expect(screen.getByTestId("user-skill")).toBeInTheDocument());
-  })
+    const userSkill = await screen.findByTestId("user-skill");
+    expect(userSkill).toBeInTheDocument();
+  });
 
   test("githubのアイコンが表示されていること", async () => {
-    await waitFor(()=>expect(screen.getByTestId("github-icon")).toBeInTheDocument());
-  })
-  test("qiitaのアイコンが表示されていること", async () => { 
-    await waitFor(()=>expect(screen.getByTestId("qiita-icon")).toBeInTheDocument());
-  })
-  test("xのアイコンが表示されていること", async () => { 
-    await waitFor(()=>expect(screen.getByTestId("x-icon")).toBeInTheDocument());
-  })
+    const githubIcon = await screen.findByTestId("github-icon");
+    expect(githubIcon).toBeInTheDocument();
+  });
+
+  test("qiitaのアイコンが表示されていること", async () => {
+    const qiitaIcon = await screen.findByTestId("qiita-icon");
+    expect(qiitaIcon).toBeInTheDocument();
+  });
+
+  test("xのアイコンが表示されていること", async () => {
+    const xIcon = await screen.findByTestId("x-icon");
+    expect(xIcon).toBeInTheDocument();
+  });
+
   test("戻るボタンを押すとトップページに遷移すること", async () => {
-    await waitFor(() => screen.getByTestId("back-button"));
-    await userEvent.click(screen.getByTestId("back-button"));
+    const backButton = await screen.findByTestId("back-button");
+    await userEvent.click(backButton);
     expect(mockedNavigator).toHaveBeenCalledWith("/");
   });
 });
