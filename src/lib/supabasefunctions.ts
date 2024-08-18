@@ -43,5 +43,14 @@ export const getSkillData = async (skill_id:number) => {
             throw new Error('スキル情報の取得中にエラーが発生しました。');
         }
     return data;
+}
 
+// ユーザー情報を登録する関数
+export const addUser = async (id:string,name: string,description: string,github_id: string,qiita_id: string,x_id: string) => {
+    await supabase.from("users").insert({id,name,description,github_id,qiita_id,x_id})
+}
+
+// ユーザーのスキル情報を登録する関数
+export const addUserSkill = async (user_id:string,skill_id:number) => {
+    await supabase.from("user_skill").insert({user_id,skill_id})
 }
