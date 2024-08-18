@@ -1,7 +1,6 @@
 import { render, screen, waitFor } from "@testing-library/react";
 import { MemoryRouter, Route, Routes } from "react-router-dom";
 import MyCard from "../components/MyCard";
-import { getSkillData, getSkillId, getUserData } from "../lib/supabasefunctions";
 import userEvent from "@testing-library/user-event";
 
 const mockedNavigator = jest.fn();
@@ -12,8 +11,8 @@ jest.mock("react-router-dom", () => ({
 
 // モックデータの作成
 const mockUser = {
-  id: "123",
-  name: "テストユーザー",
+  id: "test-user",
+  name: "テストユーザーです",
   description: "テストユーザーの自己紹介",
   github_id: "test-github",
   qiita_id: "test-qiita",
@@ -25,18 +24,14 @@ const mockSkill = {
   name: "テストスキル"
 };
 
-// モック関数の設定
-jest.mock("../lib/supabasefunctions", () => ({
-  getUserData: jest.fn(),
-  getSkillId: jest.fn(),
-  getSkillData: jest.fn()
-}));
 
 describe("トップページのテスト", () => {
   beforeEach(() => {
-    (getUserData as jest.Mock).mockResolvedValue(mockUser);
-    (getSkillId as jest.Mock).mockResolvedValue([{ skill_id: "1" }]);
-    (getSkillData as jest.Mock).mockResolvedValue(mockSkill);
+    jest.mock("../lib/supabasefunctions", () => ({
+      getUserData: jest.fn().mockResolvedValue(mockUser),
+      getSkillId: jest.fn().mockResolvedValue([{ skill_id: "1" }]),
+      getSkillData: jest.fn().mockResolvedValue(mockSkill),
+    }));
     render(
       <MemoryRouter initialEntries={['/cards/sample-id']}>
         <Routes>
