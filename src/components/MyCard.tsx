@@ -47,7 +47,7 @@ function MyCard() {
 
   return (
     <>
-      <Card maxW="sm" m="auto" mt="15%">
+      <Card maxW="sm" m="auto" mt="15%" data-testid="card">
         <CardBody m="auto">
           <Text fontWeight="bold" fontSize="2xl" mb="20px" data-testid="user-name">
             {user.name}
