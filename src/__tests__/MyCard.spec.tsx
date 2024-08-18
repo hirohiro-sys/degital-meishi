@@ -21,28 +21,28 @@ describe("トップページのテスト", () => {
   });
 
   test("名前が表示されていること", async () => {
-    expect(await screen.findByTestId("user-name")).toBeInTheDocument();
+    await waitFor(()=>expect(screen.getByTestId("user-name")).toBeInTheDocument());
   });
 
   test("自己紹介が表示されていること", async () => {
-    expect(await screen.findByTestId("user-description")).toBeInTheDocument();
+    await waitFor(()=>expect(screen.getByTestId("user-description")).toBeInTheDocument());
   })
 
   test("スキルが表示されていること", async () => {
-    expect(await screen.findByTestId("user-skill")).toBeInTheDocument();
+    await waitFor(()=>expect(screen.getByTestId("user-skill")).toBeInTheDocument());
   })
 
   test("githubのアイコンが表示されていること", async () => {
-    expect(await screen.findByTestId("github-icon")).toBeInTheDocument();
+    await waitFor(()=>expect(screen.getByTestId("github-icon")).toBeInTheDocument());
   })
   test("qiitaのアイコンが表示されていること", async () => { 
-    expect(await screen.findByTestId("qiita-icon")).toBeInTheDocument();
+    await waitFor(()=>expect(screen.getByTestId("qiita-icon")).toBeInTheDocument());
   })
   test("xのアイコンが表示されていること", async () => { 
-    expect(await screen.findByTestId("x-icon")).toBeInTheDocument();
+    await waitFor(()=>expect(screen.getByTestId("x-icon")).toBeInTheDocument());
   })
   test("戻るボタンを押すとトップページに遷移すること", async () => {
-    await waitFor(() => screen.findByTestId("back-button"));
+    await waitFor(() => screen.getByTestId("back-button"));
     await userEvent.click(screen.getByTestId("back-button"));
     expect(mockedNavigator).toHaveBeenCalledWith("/");
   });
