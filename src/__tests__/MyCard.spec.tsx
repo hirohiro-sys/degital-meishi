@@ -1,4 +1,4 @@
-import { render, screen } from "@testing-library/react";
+import { render, screen, waitFor } from "@testing-library/react";
 import { MemoryRouter, Route, Routes } from "react-router-dom";
 import MyCard from "../components/MyCard";
 import userEvent from "@testing-library/user-event";
@@ -21,33 +21,39 @@ describe("トップページのテスト", () => {
   });
 
   test("名前が表示されていること", async () => {
-    const userName = await screen.findByTestId("user-name");
-    expect(userName).toBeInTheDocument();
+    await waitFor(() => {
+      expect(screen.getByTestId("user-name")).toBeInTheDocument();
+    });
   });
 
   test("自己紹介が表示されていること", async () => {
-    const userDescription = await screen.findByTestId("user-description");
-    expect(userDescription).toBeInTheDocument();
+    await waitFor(() => {
+      expect(screen.getByTestId("user-description")).toBeInTheDocument();
+    });
   });
 
   test("スキルが表示されていること", async () => {
-    const userSkill = await screen.findByTestId("user-skill");
-    expect(userSkill).toBeInTheDocument();
+    await waitFor(() => {
+      expect(screen.getByTestId("user-skill")).toBeInTheDocument();
+    });
   });
 
   test("githubのアイコンが表示されていること", async () => {
-    const githubIcon = await screen.findByTestId("github-icon");
-    expect(githubIcon).toBeInTheDocument();
+    await waitFor(() => {
+      expect(screen.getByTestId("github-icon")).toBeInTheDocument();
+    });
   });
 
   test("qiitaのアイコンが表示されていること", async () => {
-    const qiitaIcon = await screen.findByTestId("qiita-icon");
-    expect(qiitaIcon).toBeInTheDocument();
+    await waitFor(() => {
+      expect(screen.getByTestId("qiita-icon")).toBeInTheDocument();
+    });
   });
 
   test("xのアイコンが表示されていること", async () => {
-    const xIcon = await screen.findByTestId("x-icon");
-    expect(xIcon).toBeInTheDocument();
+    await waitFor(() => {
+      expect(screen.getByTestId("x-icon")).toBeInTheDocument();
+    });
   });
 
   test("戻るボタンを押すとトップページに遷移すること", async () => {
