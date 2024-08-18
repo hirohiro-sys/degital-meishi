@@ -1,4 +1,4 @@
-import { render, screen, } from "@testing-library/react";
+import { render, screen, waitFor, } from "@testing-library/react";
 import { MemoryRouter, Route, Routes } from "react-router-dom";
 import MyCard from "../components/MyCard";
 // import userEvent from "@testing-library/user-event";
@@ -22,6 +22,12 @@ describe("トップページのテスト", () => {
 
   // cardが表示されていること
   test("cardが表示されていること", async () => {
+    // `loading...` メッセージが消えるのを待つ
+    await waitFor(() => {
+      expect(screen.queryByText("loading...")).not.toBeInTheDocument();
+    });
+
+    // `card` が表示されていることを確認
     const card = await screen.findByTestId("card");
     expect(card).toBeInTheDocument();
   });
