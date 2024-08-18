@@ -13,6 +13,9 @@ jest.mock("react-router-dom", () => ({
 jest.mock("../lib/supabasefunctions", () => {
     return {
     // DBに影響を与えないようにモック化
+    getUserData: jest.fn(),
+    getSkillId: jest.fn(),
+    getSkillData: jest.fn(),
     addUser: jest.fn(),
     addUserSkill: jest.fn(),
     };
