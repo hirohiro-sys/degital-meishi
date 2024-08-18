@@ -3,6 +3,7 @@ import { MemoryRouter, Route, Routes } from "react-router-dom";
 import MyCard from "../components/MyCard";
 import { getSkillData, getSkillId, getUserData } from "../lib/supabasefunctions";
 import userEvent from "@testing-library/user-event";
+import { act } from "react";
 
 const mockedNavigator = jest.fn();
 jest.mock("react-router-dom", () => ({
@@ -32,19 +33,22 @@ jest.mock("../lib/supabasefunctions", () => ({
 }));
 
 describe("トップページのテスト", () => {
-  beforeEach(() => {
+  beforeEach(async () => {
     (getUserData as jest.Mock).mockResolvedValue(mockUser);
     (getSkillId as jest.Mock).mockResolvedValue([{ skill_id: "1" }]);
     (getSkillData as jest.Mock).mockResolvedValue(mockSkill);
-    render(
-      <MemoryRouter initialEntries={['/cards/sample-id']}>
-        <Routes>
-          <Route path="/cards/:id" element={<MyCard />} />
-        </Routes>
-      </MemoryRouter>
-    );
+
+    await act(async () => {
+      render(
+        <MemoryRouter initialEntries={['/cards/sample-id']}>
+          <Routes>
+            <Route path="/cards/:id" element={<MyCard />} />
+          </Routes>
+        </MemoryRouter>
+      );
+    });
   });
-  
+
 
   test("名前が表示されていること", async () => {
     await waitFor(() => {
