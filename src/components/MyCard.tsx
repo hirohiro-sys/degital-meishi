@@ -6,7 +6,15 @@ import {
   getSkillId,
   getSkillData,
 } from "../lib/supabasefunctions";
-import { Button, Card, CardBody, Center, Flex, Text } from "@chakra-ui/react";
+import {
+  Button,
+  Card,
+  CardBody,
+  Center,
+  Flex,
+  Spinner,
+  Text,
+} from "@chakra-ui/react";
 import { FaGithub } from "react-icons/fa";
 import { SiQiita } from "react-icons/si";
 import { FaSquareXTwitter } from "react-icons/fa6";
@@ -38,22 +46,44 @@ function MyCard() {
     getUserAllData();
   }, [id]);
 
-  if (isLoading) return <p>loading...</p>;
+  if (isLoading)
+    return (
+      <Center height="100vh">
+        <Spinner
+          thickness="4px"
+          speed="0.65s"
+          emptyColor="gray.200"
+          color="blue.500"
+          size="xl"
+        />
+      </Center>
+    );
+
   if (!user) return <p>ユーザーが存在しません。user_idを確認してください。</p>;
 
   return (
     <>
       <Card maxW="sm" m="auto" mt="15%" data-testid="card">
         <CardBody m="auto">
-          <Text fontWeight="bold" fontSize="2xl" mb="20px" data-testid="user-name">
+          <Text
+            fontWeight="bold"
+            fontSize="2xl"
+            mb="20px"
+            data-testid="user-name"
+          >
             {user.name}
           </Text>
           <Text fontWeight="bold">自己紹介</Text>
-          <div dangerouslySetInnerHTML={{ __html: user.description }} data-testid="user-description"/>
+          <div
+            dangerouslySetInnerHTML={{ __html: user.description }}
+            data-testid="user-description"
+          />
           <Text fontWeight="bold" mt="20px">
             好きな技術
           </Text>
-          <Text data-testid="user-skill">{skill ? skill.name : "スキルが見つかりませんでした。"}</Text>
+          <Text data-testid="user-skill">
+            {skill ? skill.name : "スキルが見つかりませんでした。"}
+          </Text>
           <Flex gap="9" mt="20px">
             <Text fontSize="3xl">
               {user.github_id && (
@@ -62,7 +92,7 @@ function MyCard() {
                   target="_blank"
                   rel="noopener noreferrer"
                 >
-                  <FaGithub data-testid="github-icon"/>
+                  <FaGithub data-testid="github-icon" />
                 </a>
               )}
             </Text>
@@ -73,7 +103,7 @@ function MyCard() {
                   target="_blank"
                   rel="noopener noreferrer"
                 >
-                  <SiQiita data-testid="qiita-icon"/>
+                  <SiQiita data-testid="qiita-icon" />
                 </a>
               )}
             </Text>
@@ -84,7 +114,7 @@ function MyCard() {
                   target="_blank"
                   rel="noopener noreferrer"
                 >
-                  <FaSquareXTwitter data-testid="x-icon"/>
+                  <FaSquareXTwitter data-testid="x-icon" />
                 </a>
               )}
             </Text>
@@ -92,7 +122,14 @@ function MyCard() {
         </CardBody>
       </Card>
       <Center>
-        <Button colorScheme="teal" mt="10px" onClick={()=>navigate("/")} data-testid="back-button">戻る</Button>
+        <Button
+          colorScheme="teal"
+          mt="10px"
+          onClick={() => navigate("/")}
+          data-testid="back-button"
+        >
+          戻る
+        </Button>
       </Center>
     </>
   );

@@ -1,4 +1,6 @@
 import {
+  Alert,
+  AlertIcon,
   Button,
   Card,
   CardBody,
@@ -9,6 +11,7 @@ import {
   Select,
   Text,
   Textarea,
+  useDisclosure,
 } from "@chakra-ui/react";
 
 import { SubmitHandler, useForm } from "react-hook-form";
@@ -26,6 +29,7 @@ type formInputs = {
 };
 
 export const Register = () => {
+  const { isOpen, onOpen, onClose } = useDisclosure();
   const navigate = useNavigate();
   const {
     register,
@@ -44,12 +48,28 @@ export const Register = () => {
       data.xId ?? ""
     );
     await addUserSkill(data.tango, Number(data.skill));
-    navigate("/");
+    onOpen();
+    setTimeout(() => {
+      navigate("/");
+      onClose();
+    }, 2000);
   };
 
   return (
     <>
-      <Text textAlign="center" fontWeight="bold" fontSize="3xl" mt="30px" data-testid="title-registerpage">
+      {isOpen && (
+        <Alert status="success" mb="4" maxW="400px" mx="auto">
+          <AlertIcon />
+          登録が成功しました！
+        </Alert>
+      )}
+      <Text
+        textAlign="center"
+        fontWeight="bold"
+        fontSize="3xl"
+        mt="30px"
+        data-testid="title-registerpage"
+      >
         新規名刺登録
       </Text>
       <Card maxW="sm" m="auto">
@@ -57,7 +77,7 @@ export const Register = () => {
           <form onSubmit={handleSubmit(onSubmit)}>
             <FormControl isInvalid={Boolean(errors.tango)}>
               <FormLabel htmlFor="tango" fontWeight="bold">
-                好きな英単語 *
+                好きな英単語(ユーザーID) *
               </FormLabel>
               <Input
                 id="tango"
@@ -132,25 +152,39 @@ export const Register = () => {
               <FormLabel htmlFor="github-id" fontWeight="bold" mt="15px">
                 Github ID
               </FormLabel>
-              <Input id="github-id" {...register("githubId")} data-testid="input-githubId" />
+              <Input
+                id="github-id"
+                {...register("githubId")}
+                data-testid="input-githubId"
+              />
             </FormControl>
 
             <FormControl>
               <FormLabel htmlFor="qiita-id" fontWeight="bold" mt="15px">
                 Qiita ID
               </FormLabel>
-              <Input id="qiita-id" {...register("qiitaId")} data-testid="input-qiitaId"/>
+              <Input
+                id="qiita-id"
+                {...register("qiitaId")}
+                data-testid="input-qiitaId"
+              />
             </FormControl>
 
             <FormControl>
               <FormLabel htmlFor="x-id" fontWeight="bold" mt="15px">
                 X ID
               </FormLabel>
-              <Input id="x-id" {...register("xId")} data-testid="input-xId"/>
+              <Input id="x-id" {...register("xId")} data-testid="input-xId" />
             </FormControl>
 
             <Text>*は必須入力項目です。</Text>
-            <Button colorScheme="blue" ml="35%" mt="5px" type="submit" data-testid="register-button">
+            <Button
+              colorScheme="blue"
+              ml="35%"
+              mt="5px"
+              type="submit"
+              data-testid="register-button"
+            >
               登録
             </Button>
           </form>

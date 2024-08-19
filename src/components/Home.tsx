@@ -25,17 +25,16 @@ export const Home = () => {
         textAlign="center"
         fontWeight="bold"
         fontSize="3xl"
-        mb="-250px"
-        mt="250px"
         data-testid="title"
+        mt="300px"
       >
         デジタル名刺アプリ
       </Text>
-      <Card maxW="sm" m="auto" mt="15%">
+      <Card maxW="sm" m="auto">
         <CardBody>
-          <Text fontWeight="bold">id</Text>
+          <Text fontWeight="bold">ユーザーid</Text>
           <Input
-            placeholder="ユーザーIDを入力してください。"
+            placeholder="例) sample-id"
             value={userId}
             onChange={(e) => setUserId(e.target.value)}
             data-testid="id-input"
