@@ -40,7 +40,7 @@ describe("名刺ページのテスト", () => {
 
     await act(async () => {
       render(
-        <MemoryRouter initialEntries={['/cards/sample-id']}>
+        <MemoryRouter initialEntries={['/cards/test-user-id']}>
           <Routes>
             <Route path="/cards/:id" element={<MyCard />} />
           </Routes>
