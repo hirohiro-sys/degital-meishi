@@ -13,7 +13,7 @@ jest.mock("react-router-dom", () => ({
 
 // モックデータの作成
 const mockUser = {
-  id: "123",
+  id: "test-user-id",
   name: "テストユーザー",
   description: "テストユーザーの自己紹介",
   github_id: "test-github",
@@ -32,7 +32,7 @@ jest.mock("../lib/supabasefunctions", () => ({
   getSkillData: jest.fn()
 }));
 
-describe("トップページのテスト", () => {
+describe("名刺ページのテスト", () => {
   beforeEach(async () => {
     (getUserData as jest.Mock).mockResolvedValue(mockUser);
     (getSkillId as jest.Mock).mockResolvedValue([{ skill_id: "1" }]);
