@@ -1,6 +1,6 @@
 import {
-  Alert,
-  AlertIcon,
+  // Alert,
+  // AlertIcon,
   Button,
   Card,
   CardBody,
@@ -11,7 +11,7 @@ import {
   Select,
   Text,
   Textarea,
-  useDisclosure,
+  // useDisclosure,
 } from "@chakra-ui/react";
 
 import { SubmitHandler, useForm } from "react-hook-form";
@@ -29,7 +29,7 @@ type formInputs = {
 };
 
 export const Register = () => {
-  const { isOpen, onOpen, onClose } = useDisclosure();
+  // const { isOpen, onOpen, onClose } = useDisclosure();
   const navigate = useNavigate();
   const {
     register,
@@ -48,21 +48,21 @@ export const Register = () => {
       data.xId ?? ""
     );
     await addUserSkill(data.tango, Number(data.skill));
-    onOpen();
-    setTimeout(() => {
+    // onOpen();
+    // setTimeout(() => {
       navigate("/");
-      onClose();
-    }, 2000);
+    //   onClose();
+    // }, 2000);
   };
 
   return (
     <>
-      {isOpen && (
+      {/* {isOpen && (
         <Alert status="success" mb="4" maxW="400px" mx="auto">
           <AlertIcon />
           登録が成功しました！
         </Alert>
-      )}
+      )} */}
       <Text
         textAlign="center"
         fontWeight="bold"
