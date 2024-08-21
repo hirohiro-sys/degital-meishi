@@ -22,6 +22,6 @@ jobs:
 
     - name: Run script
       env:
-        SUPABASE_URL: ${{ secrets.SUPABASE_URL }}
-        SUPABASE_KEY: ${{ secrets.SUPABASE_KEY }}
+        SUPABASE_URL: ${{ secrets.VITE_SUPABASE_URL }}
+        SUPABASE_KEY: ${{ secrets.VITE_SUPABASE_ANON_KEY }}
       run: npx tsx batch/index.ts
