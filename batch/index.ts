@@ -1,4 +1,5 @@
 import { supabase } from "../src/lib/supabase";
+import 'dotenv/config';
 
 
 async function deleteUserData() {
