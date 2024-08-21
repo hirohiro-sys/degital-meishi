@@ -18,7 +18,7 @@ async function deleteUserData() {
   console.log("startedYesterday:", startedYesterday);
   console.log("endedYesterday:", endedYesterday);
 
-  console.log("Deleted user data:", userDeleteResult);
+  console.log("ユーザーデータを削除しました:", userDeleteResult);
 
   const skillDeleteResult = await supabase
     .from("user_skill")
@@ -26,10 +26,10 @@ async function deleteUserData() {
     .gte("created_at", startedYesterday.toISOString())
     .lte("created_at", endedYesterday.toISOString());
 
-  console.log("Deleted skill data:", skillDeleteResult);
+  console.log("スキルデータを削除しました:", skillDeleteResult);
 }
 
 deleteUserData()
-  .then(() => console.log("Deletion complete!"))
-  .catch((error) => console.error("Deletion failed:", error));
+  .then(() => console.log("削除の実行が完了しました。"))
+  .catch((error) => console.error("削除の処理中にエラーが発生しました→", error));
 

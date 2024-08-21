@@ -2,7 +2,7 @@ name: Delete User Data
 
 on:
   schedule:
-    - cron: '0 6 * * *'
+    - cron: '0 21 * * *'
 
 jobs:
   delete-data:
@@ -24,4 +24,4 @@ jobs:
       env:
         SUPABASE_URL: ${{ secrets.VITE_SUPABASE_URL }}
         SUPABASE_KEY: ${{ secrets.VITE_SUPABASE_ANON_KEY }}
-      run: npx tsx batch/index.ts
+      run: npx tsx --env-file=.env  batch/index.ts
