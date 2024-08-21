@@ -1,5 +1,3 @@
-// import { Skill } from './../domain/meishi';
-// import { User } from "../domain/meishi";
 import { supabase }  from "../lib/supabase"
 
 
