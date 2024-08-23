@@ -1,29 +1,28 @@
-name: 6:00 Data Deletion
+name: Delete User Data
 
 on:
-  workflow_dispatch:
-  # Schedule to run every day at 21:00 UTC
+  workflow_dispatch: # 手動トリガー
   schedule:
-    - cron: "0 21 * * *"
+    - cron: "0 21 * * *" # 毎日21:00 UTCに実行
 
 jobs:
-  delete_data:
+  delete-data:
     runs-on: ubuntu-latest
     env:
       VITE_SUPABASE_URL: ${{ secrets.VITE_SUPABASE_URL }}
-      VITE_SUPABASE_KEY: ${{ secrets.VITE_SUPABASE_KEY }}
+      VITE_SUPABASE_ANON_KEY: ${{ secrets.VITE_SUPABASE_ANON_KEY }}
 
     steps:
-      - name: Checkout repository
-        uses: actions/checkout@v2
+    - name: Checkout code
+      uses: actions/checkout@v2
 
-      - name: Set up Node.js
-        uses: actions/setup-node@v2
-        with:
-          node-version: "18"
+    - name: Set up Node.js
+      uses: actions/setup-node@v2
+      with:
+        node-version: '18'
 
-      - name: Install dependencies
-        run: npm install
+    - name: Install dependencies
+      run: npm install
 
-      - name: Run data deletion script
-        run: npx tsx ./batch/index.ts
+    - name: Run script
+      run: npx tsx batch/index.ts
