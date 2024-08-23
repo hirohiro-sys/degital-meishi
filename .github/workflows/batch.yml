@@ -1,16 +1,13 @@
 name: Delete User Data
 
 on:
-  workflow_dispatch: # 手動トリガー
+  workflow_dispatch: # デバッグ用手動トリガー
   schedule:
-    - cron: "0 21 * * *" # 毎日21:00 UTCに実行
+    - cron: "0 21 * * *" # 日本時間の午前6時に実行
 
 jobs:
   delete-data:
     runs-on: ubuntu-latest
-    env:
-      VITE_SUPABASE_URL: ${{ secrets.VITE_SUPABASE_URL }}
-      VITE_SUPABASE_ANON_KEY: ${{ secrets.VITE_SUPABASE_ANON_KEY }}
 
     steps:
     - name: Checkout code
@@ -25,4 +22,7 @@ jobs:
       run: npm install
 
     - name: Run script
+      env:
+        VITE_SUPABASE_URL: ${{ secrets.VITE_SUPABASE_URL }}
+        VITE_SUPABASE_ANON_KEY: ${{ secrets.VITE_SUPABASE_ANON_KEY }}
       run: npx tsx batch/index.ts
