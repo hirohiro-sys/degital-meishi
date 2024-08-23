@@ -3,11 +3,11 @@ import { supabase } from "../src/lib/supabase";
 
 async function deleteUserData() {
   const startedYesterday = new Date();
-  startedYesterday.setDate(startedYesterday.getDate());
+  startedYesterday.setDate(startedYesterday.getDate()-1);
   startedYesterday.setUTCHours(0, 0, 0, 0);
 
   const endedYesterday = new Date();
-  endedYesterday.setDate(endedYesterday.getDate());
+  endedYesterday.setDate(endedYesterday.getDate()-1);
   endedYesterday.setUTCHours(23, 59, 59, 999);
 
   const userDeleteResult = await supabase
