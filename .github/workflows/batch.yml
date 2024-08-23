@@ -1,28 +1,29 @@
-name: Delete User Data
+name: 6:00 Data Deletion
 
 on:
   workflow_dispatch:
+  # Schedule to run every day at 21:00 UTC
   schedule:
     - cron: "0 21 * * *"
 
 jobs:
-  delete-data:
+  delete_data:
     runs-on: ubuntu-latest
+    env:
+      VITE_SUPABASE_URL: ${{ secrets.SUPABASE_URL }}
+      VITE_SUPABASE_KEY: ${{ secrets.SUPABASE_KEY }}
 
     steps:
-    - name: Checkout code
-      uses: actions/checkout@v2
+      - name: Checkout repository
+        uses: actions/checkout@v2
 
-    - name: Set up Node.js
-      uses: actions/setup-node@v2
-      with:
-        node-version: '18'
+      - name: Set up Node.js
+        uses: actions/setup-node@v2
+        with:
+          node-version: "18"
 
-    - name: Install dependencies
-      run: npm install
+      - name: Install dependencies
+        run: npm install
 
-    - name: Run script
-      env:
-        VITE_SUPABASE_URL: ${{ secrets.VITE_SUPABASE_URL }}
-        VITE_SUPABASE_KEY: ${{ secrets.VITE_SUPABASE_ANON_KEY }}
-      run: npx tsx ./batch/index.ts
+      - name: Run data deletion script
+        run: npx tsx ./batch/index.ts
