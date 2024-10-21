@@ -1,12 +1,12 @@
 # デジタル名刺アプリ
 その場ですぐに登録できるオンライン名刺アプリです。
-<div style="display: flex; justify-content: space-around;">
+<div style="display: flex; justify-content: space-around; gap: 20">
 
-<img width="210" alt="スクリーンショット 2024-10-21 19 26 44" src="https://github.com/user-attachments/assets/c3552962-1ebd-44e2-bd98-6d0550412942">
+<img width="240" alt="スクリーンショット 2024-10-21 19 26 44" src="https://github.com/user-attachments/assets/c3552962-1ebd-44e2-bd98-6d0550412942">
 
-<img width="205" alt="スクリーンショット 2024-10-21 19 26 57" src="https://github.com/user-attachments/assets/e4cba4ce-384d-49b4-9d5a-a2ca13439dbf">
+<img width="235" alt="スクリーンショット 2024-10-21 19 26 57" src="https://github.com/user-attachments/assets/e4cba4ce-384d-49b4-9d5a-a2ca13439dbf">
 
-<img width="200" alt="スクリーンショット 2024-10-21 19 27 12" src="https://github.com/user-attachments/assets/86a1323d-bbd6-4d7a-baf4-3e21f8640e4b">
+<img width="230" alt="スクリーンショット 2024-10-21 19 27 12" src="https://github.com/user-attachments/assets/86a1323d-bbd6-4d7a-baf4-3e21f8640e4b">
 
 </div>
 
