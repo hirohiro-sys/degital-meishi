@@ -32,4 +32,3 @@ async function deleteUserData() {
 deleteUserData()
   .then(() => console.log("削除の実行が完了しました。"))
   .catch((error) => console.error("削除の処理中にエラーが発生しました→", error));
-
